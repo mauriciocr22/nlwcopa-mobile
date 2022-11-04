@@ -10,6 +10,8 @@ import {
 import { SignIn } from "./src/screens/SignIn";
 import { Loading } from "./src/components/Loading";
 
+import { AuthContextProvider } from "./src/contexts/AuthContext";
+
 import { THEME } from "./src/styles/theme";
 
 export default function App() {
@@ -21,13 +23,15 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
+      <AuthContextProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
 
-      {fonstLoaded ? <SignIn /> : <Loading />}
+        {fonstLoaded ? <SignIn /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
